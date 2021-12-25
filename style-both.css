@@ -1,0 +1,18 @@
+/**
+ * フロントとエディタの両方に適応するスタイル
+ */
+
+@charset "UTF-8";
+
+/*
+.wp-block-image img {
+  max-height: 50vh;
+  object-fit: cover;
+}
+*/
+
+/*画像ブロックの高さをアレンジ：mystyel.js*/
+.is-style-my50vh img {
+  max-height: 50vh;
+  object-fit: cover;
+}

@@ -1,0 +1,40 @@
+/*transition animations*/
+/*下から浮き上がって表示*/
+.fade-in-up {
+  opacity: 0;
+  transform: translate(0, 25px);
+  transition: all 500ms ease-in-out;
+
+  &.effect-scroll {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/*keyframe animations*/
+@keyframes zoomUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes vanish {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadein-UP {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

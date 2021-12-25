@@ -1,0 +1,43 @@
+/**
+ * エディタに適応するスタイル
+ */
+
+@charset "UTF-8";
+
+/* 基本 */
+body {
+  font-family: sans-serif;
+}
+
+p {
+  line-height: 2;
+}
+
+.editor-post-title__input {
+  font-family: inherit;
+}
+
+/*エディタの標準幅*/
+.wp-block {
+  max-width: 614px;
+}
+/*幅広*/
+.wp-block[data-align="wide"] {
+  max-width: 819px;
+}
+/*全幅*/
+.wp-block[data-align="full"] {
+  max-width: none;
+}
+
+/*ウィジェットカテゴリブロックのエディタで中央配置*/
+[data-align="center"] .wp-block-categories,
+[data-align="center"] .wp-block-latest-posts,
+[data-align="center"] .wp-block-archives,
+[data-align="center"] .wp-block-tag-cloud,
+[data-align="center"] .wp-block-latest-comments,
+[data-align="center"] .wp-block-rss {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
