@@ -1,5 +1,5 @@
 const scroll_speed = 600; //スクロールスピード
-
+var categry_active_elem = "" //カテゴリーのアクティブ要素
 jQuery(function ($) {
   //ハンバーガーメニューの開閉
 	$('.hamburger').click(function() {
@@ -7,14 +7,10 @@ jQuery(function ($) {
 
         if ($(this).hasClass('active')) {
             $('.mytheme-nav').addClass('active');
-            //$('.navbar').addClass('active');
-            //$('#overlay').css('visibility', 'visible');
-            //$('.nav-brand-sp-hidden').addClass('active');
+
         } else {
             $('.mytheme-nav').removeClass('active');
-            //$('.navbar').removeClass('active');
-            //$('#overlay').css('visibility', 'hidden');
-            //$('.nav-brand-sp-hidden').removeClass('active');
+
         }
     });
 
@@ -22,18 +18,13 @@ jQuery(function ($) {
         $('.hamburger').toggleClass('active');
 
         if ($('.hamburger').hasClass('active')) {
-            //$('.hamburger-content').addClass('active');
-            //$('.navbar').addClass('active');
-            //$('#overlay').css('visibility', 'visible');
-            //$('.nav-brand-sp-hidden').addClass('active');
+
         } else {
-            //$('.hamburger-content').removeClass('active');
-            //$('.navbar').removeClass('active');
-            //$('#overlay').css('visibility', 'hidden');
-            //$('.nav-brand-sp-hidden').removeClass('active');
+
         }
     });
 
+/* window onload function end*/
 //window resize function start*/
 /*
 $(window).resize(function () {

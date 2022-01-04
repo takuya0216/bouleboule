@@ -100,7 +100,7 @@ function mytheme_enqueue(){
   //Font Awesome
   wp_enqueue_style('mytheme-fontawesome', 'https://use.fontawesome.com/releases/v5.15.4/css/all.css', array(), null);
   //Google Fonts
-  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap', array(), null);
+  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap', array(), null);
 
   //テーマのCSS
   //ファイル名に更新時刻を入れる（キャッシュ対策）
@@ -113,6 +113,9 @@ function mytheme_enqueue(){
   wp_enqueue_script('myjs',get_template_directory_uri() . '/myscript.js',
   array(),
   filemtime(get_template_directory() . '/myscript.js'));
+  wp_enqueue_script('swiperjs',get_template_directory_uri() . '/swiper.min.js',
+  array(),
+  filemtime(get_template_directory() . '/swiper.min.js'));
 }
 add_action('wp_enqueue_scripts', 'mytheme_enqueue');
 
@@ -121,6 +124,7 @@ function mytheme_both(){
   //フロントとエディタの両方に適応するCSS
   wp_enqueue_style('mytheme-style-both', get_template_directory_uri() . '/style-both.css',array(),
   filemtime(get_template_directory() . '/style-both.css'));
+  //AdobeFonts
 
 }
 add_action('enqueue_block_assets', 'mytheme_both');
@@ -179,7 +183,7 @@ function lp_guten_editor(){
     );
   }
   //Google Fonts
-  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&display=swap', array(), null);
+  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&%7Cfamily=Noto+Sans+JP:wght@300;400;500;700&display=swap', array(), null);
 }
 add_action('enqueue_block_editor_assets', 'lp_guten_editor');
 
@@ -292,3 +296,68 @@ function mytheme_block_temp(){
   );
 }
 add_action('init', 'mytheme_block_temp');
+
+/*管理画面にメニューを追加する*/
+function add_custom_menu(){
+    add_menu_page( '再利用ブロックの管理', '再利用ブロックの管理',
+    'manage_options', 'edit.php?post_type=wp_block', '', 'dashicons-admin-post', 21 );
+}
+add_action( 'admin_menu', 'add_custom_menu' );
+
+// アイキャッチデフォルト設定
+add_action( 'save_post', 'save_default_thumbnail' );
+function save_default_thumbnail( $post_id ) {
+  $post_thumbnail = get_post_meta( $post_id, $key = '_thumbnail_id', $single = true );
+  if ( !wp_is_post_revision( $post_id ) ) {
+    if ( empty( $post_thumbnail ) ) {
+      update_post_meta( $post_id, $meta_key = '_thumbnail_id', $meta_value = '753' );
+    }
+  }
+}
+
+/* テーマカスタマイザー
+---------------------------------------------------------- */
+add_action( 'customize_register', 'theme_customize' );
+
+function theme_customize($wp_customize){
+
+	//ロゴ画像
+	$wp_customize->add_section( 'logo_section', array(
+		'title' => 'ロゴ画像', //セクションのタイトル
+		'priority' => 59, //セクションの位置
+		'description' => 'ロゴ画像を使用する場合はアップロードしてください。画像を使用しない場合はタイトルがテキストで表示されます。', //セクションの説明
+	));
+
+		$wp_customize->add_setting( 'logo_url' );
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'logo_url', array(
+			'label' => 'ロゴ画像',//セッティングのタイトル
+			'section' => 'logo_section', //セクションID
+			'settings' => 'logo_url', //セッティングID
+			'description' => 'ロゴ画像を設定してください。<br>推奨サイズ：199x32px', //セッティングの説明
+		)));
+	//フッターロゴ画像
+	$wp_customize->add_section( 'footer_logo_section', array(
+		'title' => 'フッターロゴ画像', //セクションのタイトル
+		'priority' => 69, //セクションの位置
+		'description' => 'フッターロゴ画像を使用する場合はアップロードしてください。画像を使用しない場合はタイトルがテキストで表示されます。', //セクションの説明
+	));
+
+		$wp_customize->add_setting( 'footer_logo_url' );
+		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'footer_logo_url', array(
+			'label' => 'フッターロゴ画像',//セッティングのタイトル
+			'section' => 'footer_logo_section', //セクションID
+			'settings' => 'footer_logo_url', //セッティングID
+			'description' => 'フッターロゴ画像を設定してください。<br>推奨サイズ：170x89px', //セッティングの説明
+		)));
+}
+
+/* テーマカスタマイザーで設定された画像のURLを取得
+---------------------------------------------------------- */
+//ロゴ画像
+function get_the_logo_url(){
+	return esc_url( get_theme_mod( 'logo_url' ) );
+}
+//ロゴ画像
+function get_the_footer_logo_url(){
+	return esc_url( get_theme_mod( 'footer_logo_url' ) );
+}

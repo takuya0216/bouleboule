@@ -11,15 +11,17 @@
 
 <header class="mytheme-header">
   <figure class="header-logo">
-  <a href="<?php
-  echo esc_url(home_url('/')); ?> ">
-  <img src="http://dev.takuyaishida.net/wp-content/uploads/2021/11/logo.png" alt="BouleBoule">
-  </a>
+	  <?php $logo_url = get_the_logo_url('logo_url'); ?>
+	  <?php if($logo_url): ?>
+	  	<a href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_the_logo_url(); ?>" alt="<?php bloginfo('name'); ?>" /></a>
+	  <?php else: ?>
+	    <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+      <?php endif; ?>
   </figure>
 </header>
 <?php if(has_nav_menu('primary')): ?>
 <div class="hamburger">
-  <span></span><span></span>
+  <span></span><span></span><span>MENU</span>
 </div>
 <nav class="mytheme-nav">
   <?php wp_nav_menu(array(

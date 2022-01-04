@@ -3,22 +3,7 @@
 **/
 @charset "UTF-8";
 
-/*高さをアレンジ*/
-.is-style-lpheight {
-  min-height: 70vh;
-}
-
-/*影をつける*/
-.is-style-lpshadow {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
-}
-
-/*フォント*/
-.block-editor-block-list__layout,
-.mytheme-article {
-  font-family: "Montserrat", sans-serif;
-}
-
+/*基本*/
 /*変数*/
 .block-editor-block-list__layout {
   --f1: 2.44em;
@@ -27,6 +12,15 @@
   --f4: 1.25em;
   --f5: 1em;
   --f6: 0.8em;
+}
+
+.wp-block-post-template {
+  margin: 0;
+}
+
+/*about*/
+.lp-about-header h2 span {
+  display: block;
 }
 
 /*コンセプト*/
@@ -38,13 +32,6 @@
   font-size: var(--f4);
 }
 
-/*メディアとテキスト：高さアレンジ（カラム塗りつぶし）*/
-@media (min-width: 601px) {
-  .is-style-lpmedia.is-image-fill figure.wp-block-media-text__media {
-    min-height: 480px;
-  }
-}
-
 /*メディアとテキスト：カード型*/
 .is-style-lpcard {
   padding: 10px 20px;
@@ -54,4 +41,32 @@
 
 .is-style-lpcard img {
   border-radius: 50%;
+}
+
+/*高さをアレンジ*/
+.is-style-lpheight {
+  min-height: 70vh;
+}
+
+/*影をつける*/
+.is-style-lpshadow {
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+}
+
+/*メディアとテキスト：高さアレンジ（カラム塗りつぶし）*/
+@media (min-width: 601px) {
+  .is-style-lpmedia.is-image-fill figure.wp-block-media-text__media {
+    min-height: 480px;
+  }
+}
+@media (min-width: 768px) {
+  .lp-about-header h2 span {
+    display: inline;
+  }
+}
+@media (max-width: 767px) {
+  /*サービスセクション*/
+  .lp-service h2.stk-block-heading__text {
+    letter-spacing: 0px !important;
+  }
 }

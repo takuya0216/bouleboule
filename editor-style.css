@@ -5,10 +5,6 @@
 @charset "UTF-8";
 
 /* 基本 */
-body {
-  font-family: sans-serif;
-}
-
 p {
   line-height: 2;
 }
@@ -19,17 +15,30 @@ p {
 
 /*エディタの標準幅*/
 .wp-block {
-  max-width: 614px;
+  max-width: 824px;
 }
 /*幅広*/
 .wp-block[data-align="wide"] {
-  max-width: 819px;
+  max-width: 1030px;
 }
 /*全幅*/
 .wp-block[data-align="full"] {
   max-width: none;
 }
 
+/*stackable*/
+:where(:not(.stk-block-icon-label):not(.stk-block-blockquote):not(.stk-block-columns):not(.stk-block-expand):not(.stk-block-button-group)
+    > .stk-inner-blocks
+    > .block-editor-inner-blocks
+    > .block-editor-block-list__layout
+    > [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"]))
+  ~ [data-block][data-type^="stackable/"]:not([data-type="stackable/column"], [data-type^="stackable/image"]) {
+  margin-top: 0px;
+}
+
+.wp-block[data-align="right"] > * {
+  margin: 0;
+}
 /*ウィジェットカテゴリブロックのエディタで中央配置*/
 [data-align="center"] .wp-block-categories,
 [data-align="center"] .wp-block-latest-posts,

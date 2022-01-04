@@ -11,8 +11,98 @@
 }
 */
 
+/* 基本 */
+body {
+  font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", "Noto Sans JP",
+    sans-serif;
+  color: var(--secondary-color);
+}
+body *,
+body *::before,
+body *::after {
+  box-sizing: inherit; /*全要素ボーダーボックス*/
+  margin: 0;
+}
+h1 {
+  font-family: "Shippori Mincho";
+  font-weight: 700;
+}
+.genkakugo {
+  font-family: "源ノ角ゴシック JP", "Source Han Sans", "Noto Sans JP";
+}
+.A1mintyo {
+  font-family: "A1明朝", "A1 Mincho", "Shippori Mincho", sans-serif;
+}
+.display-pc {
+  display: none;
+}
+.display-sp {
+  display: visible;
+}
+.wp-block-image img {
+  object-fit: cover;
+}
+.wp-block-image {
+  margin: 0 0 0;
+}
+.font-weight-400 {
+  font-weight: 400;
+}
+/*ブロックの配置設定*/
+.alignleft {
+  float: left;
+  margin: 0 auto 2em 0;
+}
+
+.alignright {
+  float: right;
+  margin: 0 0 2em auto;
+}
+
+.aligncenter {
+  display: block;
+  margin: 2em auto;
+  clear: both;
+}
+/*テキスト折返し禁止*/
+.nowrap {
+  white-space: nowrap;
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+.word-break-keep {
+  word-break: keep-all;
+}
 /*画像ブロックの高さをアレンジ：mystyel.js*/
 .is-style-my50vh img {
   max-height: 50vh;
   object-fit: cover;
+}
+/*ヘッダーアレンジ 縦書き*/
+.is-style-vertical-text {
+  -ms-writing-mode: tb-rl;
+  writing-mode: vertical-rl;
+}
+
+/*stackable*/
+.stk-block-text__text {
+  margin: 0;
+}
+.stk-d383b45 .stk-block-text__text {
+  margin: 0 !important;
+}
+.stk-block.stk-block-column.stk-column > .stk-column-wrapper {
+  margin: 0;
+}
+.stk-container:not(.stk--no-background) {
+  background-color: rgba(0, 0, 0, 0);
+}
+/* PC版 */
+@media (min-width: 768px) {
+  .display-pc {
+    display: block;
+  }
+  .display-sp {
+    display: none;
+  }
 }
