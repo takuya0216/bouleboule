@@ -35,6 +35,11 @@ p {
   ~ [data-block][data-type^="stackable/"]:not([data-type="stackable/column"], [data-type^="stackable/image"]) {
   margin-top: 0px;
 }
+.is-root-container
+  > [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"])
+  ~ [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"]) {
+  margin-top: 0px;
+}
 
 .wp-block[data-align="right"] > * {
   margin: 0;

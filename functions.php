@@ -100,7 +100,7 @@ function mytheme_enqueue(){
   //Font Awesome
   wp_enqueue_style('mytheme-fontawesome', 'https://use.fontawesome.com/releases/v5.15.4/css/all.css', array(), null);
   //Google Fonts
-  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap', array(), null);
+  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400&family=Roboto:wght@300;400;700&display=swap', array(), null);
 
   //テーマのCSS
   //ファイル名に更新時刻を入れる（キャッシュ対策）
@@ -183,7 +183,7 @@ function lp_guten_editor(){
     );
   }
   //Google Fonts
-  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&%7Cfamily=Noto+Sans+JP:wght@300;400;500;700&display=swap', array(), null);
+  wp_enqueue_style('mytheme-googlefonts', 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400&family=Roboto:wght@300;400;700&display=swap', array(), null);
 }
 add_action('enqueue_block_editor_assets', 'lp_guten_editor');
 
@@ -208,6 +208,13 @@ function add_additional_class_on_li($classes, $item, $args)
   return $classes;
 }
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
+/**
+ * 抜粋の文字数変更,WP Multibyte Patch必須
+ */
+function twpp_change_excerpt_length( $length ) {
+  return 80;
+}
+add_filter( 'excerpt_length', 'twpp_change_excerpt_length', 999 );
 
 /**
  * 以下は、カスタマイズ要件に応じて設定
@@ -278,13 +285,6 @@ function mytheme_block_temp(){
   //$obj->template_lock = 'all'; //テンプレ変更のロック
   $obj->template = array(
     array(
-      'core/heading',
-      array(
-        'level' => '2',
-        'content' => '基本情報',
-      )
-    ),
-    array(
       'core/paragraph',
       array(
         'placeholder' => 'ここに記事を入力',
@@ -333,22 +333,94 @@ function theme_customize($wp_customize){
 			'label' => 'ロゴ画像',//セッティングのタイトル
 			'section' => 'logo_section', //セクションID
 			'settings' => 'logo_url', //セッティングID
-			'description' => 'ロゴ画像を設定してください。<br>推奨サイズ：199x32px', //セッティングの説明
+			'description' => 'ロゴ画像を設定してください。<br>推奨サイズ：472x178px', //セッティングの説明
 		)));
-	//フッターロゴ画像
-	$wp_customize->add_section( 'footer_logo_section', array(
-		'title' => 'フッターロゴ画像', //セクションのタイトル
-		'priority' => 69, //セクションの位置
-		'description' => 'フッターロゴ画像を使用する場合はアップロードしてください。画像を使用しない場合はタイトルがテキストで表示されます。', //セクションの説明
-	));
+	//フッター設定
+  $wp_customize->add_section( 'my_footer_info', array ( //ID
+    'title' => 'フッター情報設定', //表示名
+    'priority' => 100,
+  ));
 
-		$wp_customize->add_setting( 'footer_logo_url' );
-		$wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'footer_logo_url', array(
-			'label' => 'フッターロゴ画像',//セッティングのタイトル
-			'section' => 'footer_logo_section', //セクションID
-			'settings' => 'footer_logo_url', //セッティングID
-			'description' => 'フッターロゴ画像を設定してください。<br>推奨サイズ：170x89px', //セッティングの説明
-		)));
+  //郵便番号
+	$wp_customize->add_setting(
+		'my_footer_options[footer_post]', // テーマ設定を識別する「テーマ設定ID」を指定
+		array(
+			'default'     => '471-0814', // デフォルト値を設定
+      'type'        => 'option', //option:データベースに保存 デフォルト：theme_mod
+      'transport'   => 'refresh', //ライブプレビューON（OFF：postMessage)
+		)
+	);
+  //住所
+	$wp_customize->add_setting(
+		'my_footer_options[footer_address]', // テーマ設定を識別する「テーマ設定ID」を指定
+		array(
+			'default'     => '愛知県豊田市五ヶ丘3-14-5(駐車場4台)', // デフォルト値を設定
+      'type'        => 'option',
+      'transport'   => 'refresh', //ライブプレビューON（OFF：postMessage)
+		)
+	);
+  //営業時間
+	$wp_customize->add_setting(
+		'my_footer_options[footer_open]', // テーマ設定を識別する「テーマ設定ID」を指定
+		array(
+			'default'     => '10:00-19:00', // デフォルト値を設定
+      'type'        => 'option',
+      'transport'   => 'refresh', //ライブプレビューON（OFF：postMessage)
+		)
+	);
+  //定休日
+	$wp_customize->add_setting(
+		'my_footer_options[footer_close]', // テーマ設定を識別する「テーマ設定ID」を指定
+		array(
+			'default'     => '月曜日、火曜日', // デフォルト値を設定
+      'type'        => 'option',
+      'transport'   => 'refresh', //ライブプレビューON（OFF：postMessage)
+		)
+	);
+  //電話番号
+	$wp_customize->add_setting(
+		'my_footer_options[footer_tell]', // テーマ設定を識別する「テーマ設定ID」を指定
+		array(
+			'default'     => '0565-42-5900', // デフォルト値を設定
+      'type'        => 'option',
+      'transport'   => 'refresh', //ライブプレビューON（OFF：postMessage)
+		)
+	);
+  // コントロール：郵便番号
+  $wp_customize->add_control( 'footer_post_control', array(
+    'settings'  => 'my_footer_options[footer_post]',
+    'label'     => '郵便番号',
+    'section'   => 'my_footer_info',
+    'type'      => 'text',
+  ));
+  // コントロール：住所
+  $wp_customize->add_control( 'footer_address_control', array(
+    'settings'  => 'my_footer_options[footer_address]',
+    'label'     => '住所',
+    'section'   => 'my_footer_info',
+    'type'      => 'text',
+  ));
+  // コントロール：営業時間
+  $wp_customize->add_control( 'footer_open_control', array(
+    'settings'  => 'my_footer_options[footer_open]',
+    'label'     => '営業時間',
+    'section'   => 'my_footer_info',
+    'type'      => 'text',
+  ));
+  // コントロール：定休日
+  $wp_customize->add_control( 'footer_close_control', array(
+    'settings'  => 'my_footer_options[footer_close]',
+    'label'     => '定休日',
+    'section'   => 'my_footer_info',
+    'type'      => 'text',
+  ));
+  // コントロール：電話番号
+  $wp_customize->add_control( 'footer_tell_control', array(
+    'settings'  => 'my_footer_options[footer_tell]',
+    'label'     => '電話番号',
+    'section'   => 'my_footer_info',
+    'type'      => 'text',
+  ));
 }
 
 /* テーマカスタマイザーで設定された画像のURLを取得

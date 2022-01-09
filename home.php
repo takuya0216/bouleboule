@@ -23,6 +23,4 @@
     'next_text' => '<span class="screen-reader-text">次へ</span><i class="fas fa-angle-right"></i>',)); ?>
 </main>
 
-<?php get_sidebar(); ?>
-
 <?php get_footer(); ?>

@@ -28,7 +28,7 @@ h1 {
   font-weight: 700;
 }
 .genkakugo {
-  font-family: "源ノ角ゴシック JP", "Source Han Sans", "Noto Sans JP";
+  font-family: "源ノ角ゴシック JP", "Source Han Sans", "Roboto", "Noto Sans JP";
 }
 .A1mintyo {
   font-family: "A1明朝", "A1 Mincho", "Shippori Mincho", sans-serif;
@@ -64,6 +64,11 @@ h1 {
   margin: 2em auto;
   clear: both;
 }
+
+/*スマホでインライン強制改行*/
+.span-br-sp {
+  display: block;
+}
 /*テキスト折返し禁止*/
 .nowrap {
   white-space: nowrap;
@@ -97,6 +102,29 @@ h1 {
 .stk-container:not(.stk--no-background) {
   background-color: rgba(0, 0, 0, 0);
 }
+:where(.stk-block-heading:not(:first-child)) .stk-block-heading__text {
+  margin: 0;
+}
+.stk-block[class*="has-text-align-"],
+.stk-block [class*="has-text-align-"] {
+  text-align: var(--stk-alignment-text-align, start);
+  justify-content: var(--stk-alignment-justify-content, start);
+}
+/*バースデーケーキページ*/
+.stk-eab99ab .stk-block-divider__hr {
+  width: 200px !important;
+}
+.birthday-numcandle .stk-column-wrapper .stk-inner-blocks {
+  height: 100%;
+}
+
+.birthday-tell {
+  justify-content: center;
+  color: #f6e17a;
+}
+.birthday-tell a {
+  color: #f6e17a;
+}
 /* PC版 */
 @media (min-width: 768px) {
   .display-pc {
@@ -104,5 +132,20 @@ h1 {
   }
   .display-sp {
     display: none;
+  }
+  /*スマホでインライン強制改行*/
+  .span-br-sp {
+    display: inline;
+  }
+  /*バースデーケーキページ*/
+  .stk-eab99ab .stk-block-divider__hr {
+    width: 398px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /*固定ページヘッダー*/
+  .page-header-title h1.stk-block-heading__text {
+    letter-spacing: 0px !important;
   }
 }

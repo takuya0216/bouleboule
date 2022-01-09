@@ -65,6 +65,4 @@
     'next_text' => '<span class="my-prev-next my-pagi-next">NEXT</span><i class="fas fa-lg fa-angle-double-right"></i>',)); ?>
 </main>
 
-<?php get_sidebar(); ?>
-
 <?php get_footer(); ?>
