@@ -65,10 +65,15 @@ h1 {
   clear: both;
 }
 
+/*PCでインライン強制改行*/
+.span-br-pc {
+  display: inline;
+}
 /*スマホでインライン強制改行*/
 .span-br-sp {
   display: block;
 }
+
 /*テキスト折返し禁止*/
 .nowrap {
   white-space: nowrap;
@@ -132,6 +137,10 @@ h1 {
   }
   .display-sp {
     display: none;
+  }
+  /*PCでインライン強制改行*/
+  .span-br-pc {
+    display: block;
   }
   /*スマホでインライン強制改行*/
   .span-br-sp {
