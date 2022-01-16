@@ -37,6 +37,46 @@ function mytheme_setup(){
   //カスタム単位
   add_theme_support('custom-units');
 
+  //カラーパレット設定
+  // デフォルトカラーパレット取得（子テーマの場合）親テーマの場合はfalse
+  $oldColorPalette = current( (array) get_theme_support( 'editor-color-palette' ) );
+  // Wordpressのデフォルトカラーパレット取得 wp-includes/theme.json
+  if (false === $oldColorPalette && class_exists('WP_Theme_JSON_Resolver')) {
+      $settings = WP_Theme_JSON_Resolver::get_core_data()->get_settings();
+      if (isset($settings['color']['palette']['core'])) {
+          $oldColorPalette = $settings['color']['palette']['core']; // WPの言語設定で翻訳された名前が入る。
+      }
+  }
+  // カラー追加
+  $newColorPalette = [
+      [
+          'name' => esc_attr__('グリーン（メイン）', 'myThemeLangDomain'),
+          'slug' => 'primary',
+          'color' => '#315933',
+      ],
+      [
+          'name' => esc_attr__('グリーン（サブ）', 'myThemeLangDomain'),
+          'slug' => 'secondary',
+          'color' => '#275931',
+      ],
+      [
+          'name' => esc_attr__('グレー（背景）', 'myThemeLangDomain'),
+          'slug' => 'tertiary',
+          'color' => '#e0e1e1',
+      ],
+      [
+          'name' => esc_attr__('黄色（アクセント）', 'myThemeLangDomain'),
+          'slug' => 'accent',
+          'color' => '#f6e17a',
+      ],
+  ];
+  // カラーパレット配列作成
+  if (!empty($oldColorPalette)) {
+      $newColorPalette = array_merge($oldColorPalette, $newColorPalette);
+  }
+  // カラーパレット設定適用
+  add_theme_support( 'editor-color-palette', $newColorPalette);
+
   /*エディタに色設定任意設定。(使用色を限定したい時に使う。基本は使わない)
    .has-slug-background-color=背景色
    .has-slug-color=文字色
@@ -87,7 +127,13 @@ add_action('after_setup_theme', 'mytheme_setup');
 function mytheme_widgets(){
   register_sidebar(array(
     'id' => 'sidebar-1',
-    'name' => 'サイドメニュー',
+    'name' => '投稿一覧ページ最下部',
+    'before_widget' => '<section id="%1$s" class="widget %2$s">',
+    'after_widget' => '</section>'
+  ));
+  register_sidebar(array(
+    'id' => 'sidebar-2',
+    'name' => 'シングルページ最下部',
     'before_widget' => '<section id="%1$s" class="widget %2$s">',
     'after_widget' => '</section>'
   ));

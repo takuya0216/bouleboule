@@ -43,7 +43,22 @@ h1 {
   object-fit: cover;
 }
 .wp-block-image {
-  margin: 0 0 0;
+  margin: 0 0 30px 0;
+}
+
+.wp-block-page-list ul,
+.wp-block-latest-posts__list ul,
+.wp-block-archives-list ul {
+  padding: 0;
+}
+.wp-block-page-list li,
+.wp-block-latest-posts__list li,
+.wp-block-archives-list li {
+  margin: 0 0 0 0;
+  padding: 7px 0px 6px 0px;
+  list-style: none;
+  line-height: 160%;
+  border-bottom: 1px solid var(--secondary-color);
 }
 .font-weight-400 {
   font-weight: 400;
@@ -114,6 +129,10 @@ h1 {
 .stk-block [class*="has-text-align-"] {
   text-align: var(--stk-alignment-text-align, start);
   justify-content: var(--stk-alignment-justify-content, start);
+}
+
+.stk-block-icon-list.stk-block :is(ul, ol) {
+  padding-inline-start: 0;
 }
 /*バースデーケーキページ*/
 .stk-eab99ab .stk-block-divider__hr {

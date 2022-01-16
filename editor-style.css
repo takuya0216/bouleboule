@@ -9,6 +9,10 @@ p {
   line-height: 2;
 }
 
+ul.wp-block-archives {
+  padding-left: 0em;
+}
+
 .editor-post-title__input {
   font-family: inherit;
 }

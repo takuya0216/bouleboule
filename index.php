@@ -59,10 +59,15 @@
   <?php endwhile; endif; ?>
   </div>
   <?php the_posts_pagination(array(
-    'mid_size' => '3',
+    'mid_size' => 1, //カレントページの前後
+    'end_size' => 1,
     'prev_next' => true,
     'prev_text' => '<i class="fas fa-lg fa-angle-double-left"></i><span class="my-prev-next my-pagi-prev">PREVIOUS</span>',
     'next_text' => '<span class="my-prev-next my-pagi-next">NEXT</span><i class="fas fa-lg fa-angle-double-right"></i>',)); ?>
+  <!-- ウィジェットエリア（投稿一覧ページ最下部） -->
+  <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('投稿一覧ページ最下部') ) : ?>
+  <?php endif; ?>
+  <!-- / ウィジェットエリア（投稿一覧ページ最下部） -->
 </main>
 
 <?php get_footer(); ?>
