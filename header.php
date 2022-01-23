@@ -23,7 +23,7 @@
 <div class="hamburger">
   <span></span><span></span><span>MENU</span>
 </div>
-<nav class="mytheme-nav">
+<nav class="mytheme-nav A1mintyo">
   <?php wp_nav_menu(array(
     'theme_location' => 'primary',
     'menu_class' => 'nav-menu', //ulタグのクラス

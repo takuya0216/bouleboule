@@ -3,18 +3,108 @@
  */
 
 @charset "UTF-8";
+/*変数*/
+:root {
+  /*フォントサイズ*/
+  --f1: 2.75em;
+  --f2: 2.18em;
+  --f3: 1.875em;
+  --f4: 1.56em;
+  --f5: 1.25em;
+  --f6: 1em;
+  --f7: 0.8em;
 
+  /*カラー*/
+  --primary-color: #315933;
+  --secondary-color: #275931;
+  --tertiary-color: #e0e1e1;
+  --accent-color: #f6e17a;
+}
 /* 基本 */
-p {
-  line-height: 2;
+
+body {
+  font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", "Noto Sans JP",
+    sans-serif;
+  color: var(--secondary-color);
+  font-feature-settings: "palt";
+}
+/*フォント*/
+h1 {
+  font-size: var(--f2);
+  line-height: 1.3em;
+  padding: 5px 0;
+  margin: 10px 0;
+}
+h2 {
+  font-size: var(--f3);
+  color: #ffffff;
+  background-color: var(--secondary-color);
+  line-height: 1.3em;
+  margin: 20px 0;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+h3 {
+  font-size: var(--f4);
+  line-height: 1.3em;
+  border-bottom: 3px solid var(--secondary-color);
+  padding-left: 0;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  margin: 10px 0;
+}
+h4 {
+  font-size: var(--f5);
+  line-height: 1.3em;
+  padding-left: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px 0;
+  border-left: 6px solid;
+}
+h5 {
+  position: relative;
+  font-size: var(--f6);
+  line-height: 1.3em;
+  padding: 5px 20px;
+  margin: 20px 0;
+}
+h5:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: calc(50% - 2px);
+  left: 0;
+  background: var(--secondary-color);
+}
+h6 {
+  font-size: var(--f6);
+  line-height: 1.3em;
+  margin: 20px 0;
 }
 
-ul.wp-block-archives {
-  padding-left: 0em;
+p {
+  font-size: var(--f6);
+  line-height: 2;
 }
 
 .editor-post-title__input {
   font-family: inherit;
+}
+
+/*バースデーケーキ*/
+.page-header-title h1 {
+  padding: 0 !important;
+}
+.h2-reset h2 {
+  color: var(--secondary-color);
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
 }
 
 /*エディタの標準幅*/
@@ -58,4 +148,37 @@ ul.wp-block-archives {
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
+}
+/*ボーダーなし*/
+.border-style-none * {
+  border-style: none !important;
+}
+/* PC版 */
+@media (min-width: 768px) {
+  /*フォント*/
+  h1 {
+    font-size: var(--f1);
+  }
+  h2 {
+    font-size: var(--f2);
+    text-align: center;
+  }
+  h3 {
+    font-size: var(--f3);
+  }
+  h4 {
+    font-size: var(--f4);
+  }
+  h5 {
+    font-size: var(--f5);
+  }
+  h5:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: calc(50% - 2.5px);
+    left: 0;
+    background: var(--secondary-color);
+  }
 }

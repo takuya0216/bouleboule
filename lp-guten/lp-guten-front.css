@@ -5,10 +5,72 @@ body {
   grid-row-gap: 0;
   row-gap: 0;
 }
+/*フォント*/
+.lp-catch h1 {
+  line-height: normal;
+  padding: 0;
+  margin: 10px 0;
+}
+.lp-newsblog h2,
+.lp-section-header h2 {
+  color: var(--secondary-color) !important;
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
+}
+.lp-newsblog h2 a {
+  color: var(--secondary-color);
+}
+.lp-newsblog h3 {
+  font-size: var(--f4);
+  line-height: 1.3em;
+  border-bottom: 3px solid var(--secondary-color);
+  padding-left: 0;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  margin: 10px 0;
+}
+h4 {
+  font-size: var(--f5);
+  line-height: 1.3em;
+  padding-left: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px 0;
+  border-left: 6px solid;
+}
+h5 {
+  position: relative;
+  font-size: var(--f6);
+  line-height: 1.3em;
+  padding: 5px 20px;
+  margin: 20px 0;
+}
+h5:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: calc(50% - 2px);
+  left: 0;
+  background: var(--secondary-color);
+}
+h6 {
+  font-size: var(--f6);
+  line-height: 1.3em;
+  margin: 20px 0;
+}
+
+p {
+  font-size: var(--f6);
+  line-height: 2;
+  margin-bottom: 20px;
+}
 
 .lp-newsblog-posts li {
   display: flex;
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
 }
 .lp-newsblog-posts li > * {
   margin-right: 17px;
@@ -65,5 +127,8 @@ body {
 @media (min-width: 768px) {
   .lp-newsblog-posts li {
     margin-bottom: 5px;
+  }
+  h2 {
+    text-align: left;
   }
 }

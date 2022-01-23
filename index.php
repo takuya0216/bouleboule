@@ -7,7 +7,7 @@
     echo $reuse_block_content;
   ?>
   <nav id="category-nav">
-      <div class="category-nav-inner wp-inner">
+      <div class="category-nav-inner wp-inner h2-reset">
         <h2>CATEGORY</h2>
         <ul class="category-nav-menu">
           <?php
@@ -31,18 +31,19 @@
     </nav>
  <div class="postlist">
   <?php if(have_posts()): while(have_posts()): the_post(); ?>
+  <?php $url = get_permalink(); ?>
     <article <?php post_class(); ?>>
-    <a href="<?php the_permalink(); ?>">
+    <a href="<?php echo urldecode($url); ?>">
     <?php if(has_post_thumbnail()): ?>
       <figure>
       <?php the_post_thumbnail(); ?>
       </figure>
     <?php else: ?>
       <figure>
-        <img src="<?php echo get_template_directory_uri(); ?>/img/dumy.png" alt="" width="323" height="323">
+        <img src="<?php echo get_template_directory_uri(); ?>/img/dumy.png" alt="ダミー画像" width="323" height="323">
       </figure>
     <?php endif; ?>
-    <div class="postlist-textview">
+    <div class="postlist-textview h2-reset">
       <h2><?php the_title(); ?></h2>
       <time class="mytheme-time" datetime="<?php echo esc_attr(get_the_date(DATE_W3C)); ?>">
       <?php echo esc_html(get_the_date()); ?>
@@ -53,7 +54,7 @@
       <p><?php echo get_the_excerpt(); ?></p>
     </div>
     <div class="postlist-readmore genkakugo">
-      <a href="<?php the_permalink(); ?>"><p>READ MORE</p></a>
+      <a href="<?php echo urldecode($url); ?>"><p>READ MORE</p></a>
     </div>
     </article>
   <?php endwhile; endif; ?>

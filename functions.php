@@ -159,9 +159,12 @@ function mytheme_enqueue(){
   wp_enqueue_script('myjs',get_template_directory_uri() . '/myscript.js',
   array(),
   filemtime(get_template_directory() . '/myscript.js'));
-  wp_enqueue_script('swiperjs',get_template_directory_uri() . '/swiper.min.js',
-  array(),
-  filemtime(get_template_directory() . '/swiper.min.js'));
+  //SwiperはTOPのみ
+  if( is_front_page() ){
+    wp_enqueue_script('swiperjs',get_template_directory_uri() . '/swiper.min.js',
+    array(),
+    filemtime(get_template_directory() . '/swiper.min.js'));
+  }
 }
 add_action('wp_enqueue_scripts', 'mytheme_enqueue');
 

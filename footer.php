@@ -26,6 +26,7 @@
 </footer>
 
 <?php wp_footer(); ?>
+<?php if( is_front_page()): ?>
 <script>
     const theWrapper = document.getElementById('swiperWrapper');
     var swiper = new Swiper('.swiper-container', {
@@ -52,6 +53,7 @@
       },
     });
   </script>
+<?php endif; ?>
 </body>
 
 </html>

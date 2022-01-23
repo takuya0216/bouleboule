@@ -51,3 +51,7 @@ Header always set Referrer-Policy: "no-referrer-when-downgrade"
 Header always append X-Frame-Options SAMEORIGIN
 </ifModule>
 #END SecurityHeaderSetting#
+
+<IfModule mod_siteguard.c>
+  SiteGuard_User_ExcludeSig ip(111.111.111.111)
+</IfModule>

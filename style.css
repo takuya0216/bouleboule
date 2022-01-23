@@ -9,12 +9,13 @@
  /*変数*/
 :root {
   /*フォントサイズ*/
-  --f1: 2.44em;
-  --f2: 1.95em;
-  --f3: 1.56em;
-  --f4: 1.25em;
-  --f5: 1em;
-  --f6: 0.8em;
+  --f1: 2.75em;
+  --f2: 2.18em;
+  --f3: 1.875em;
+  --f4: 1.56em;
+  --f5: 1.25em;
+  --f6: 1em;
+  --f7: 0.8em;
 
   /*カラー*/
   --primary-color: #315933;
@@ -55,6 +56,7 @@
 body {
   box-sizing: border-box; /*全要素ボーダーボックス:ブロックエディタも同様*/
   margin: 0;
+  letter-spacing: 0.1em;
 }
 
 figure {
@@ -102,10 +104,20 @@ li {
   margin-bottom: 30px;
 }
 .wp-block-separator {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 1em;
+  margin-bottom: 1.5em;
 }
 
+.wp-block-page-list ul,
+.wp-block-latest-posts__list ul,
+.wp-block-archives-list ul {
+  padding: 0;
+}
+.wp-block-page-list li,
+.wp-block-latest-posts__list li,
+.wp-block-archives-list li {
+  line-height: 160%;
+}
 /*animation*/
 /* Fading Effect - invisible state - */
 .fading-box {
@@ -268,8 +280,9 @@ body > * {
   background-color: rgba(0, 0, 0, 0);
   color: var(--primary-color);
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 16px;
+  font-size: 1em;
   font-weight: 400;
+  letter-spacing: 0;
 }
 
 /* 最初のspanをマイナス45度に */
@@ -316,7 +329,6 @@ body > * {
   flex-flow: column;
   align-items: center;
   font-size: 24px;
-  font-family: "Shippori Mincho", "Noto Sans JP", sans-serif;
   width: 100%;
   padding: 60px 25px;
   list-style: none;
@@ -332,23 +344,6 @@ body > * {
   color: #fff;
 }
 
-/*
-.mytheme-nav {
-  grid-row: head;
-  justify-self: center;
-  align-self: end;
-}
-.mytheme-nav ul {
-  display: grid;
-  grid-auto-flow: column;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
-  grid-column-gap: 20px;
-  column-gap: 20px;
-  font-size: var(--f6);
-}
-*/
 /*コンテンツ*/
 .mytheme-main {
   grid-column: 1 / -1;
@@ -356,7 +351,7 @@ body > * {
   display: grid;
   grid-template-columns: inherit;
   grid-template-columns: subgrid;
-  margin-bottom: 150px;
+  margin-bottom: 80px;
 }
 
 .mytheme-main > * {
@@ -364,30 +359,73 @@ body > * {
   min-width: 0;
 }
 
+/*フォント*/
 h1 {
-  font-size: var(--f1);
+  font-size: var(--f2);
+  line-height: 1.3em;
+  padding: 5px 0;
+  margin: 10px 0;
 }
 h2 {
-  font-size: var(--f2);
+  font-size: var(--f3);
+  color: #ffffff;
+  background-color: var(--secondary-color);
+  line-height: 1.3em;
+  margin: 20px 0;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+h2 a {
+  color: #ffffff;
 }
 h3 {
-  font-size: var(--f3);
+  font-size: var(--f4);
+  line-height: 1.3em;
+  border-bottom: 3px solid var(--secondary-color) !important;
+  padding-left: 0;
+  padding-top: 5px;
+  padding-bottom: 3px;
+  margin: 10px 0;
 }
 h4 {
-  font-size: var(--f4);
+  font-size: var(--f5);
+  line-height: 1.3em;
+  padding-left: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 20px 0;
+  border-left: 4px solid var(--secondary-color) !important;
 }
 h5 {
-  font-size: var(--f5);
+  position: relative;
+  font-size: var(--f6);
+  line-height: 1.3em;
+  padding: 5px 20px;
+  margin: 20px 0;
+}
+h5:before,
+h5.stk-block-heading__text:before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  top: calc(50% - 2px);
+  left: 0;
+  background: var(--secondary-color);
 }
 h6 {
   font-size: var(--f6);
+  line-height: 1.3em;
+  margin: 20px 0;
 }
 
 p {
-  font-size: var(--f5);
+  font-size: var(--f6);
   line-height: 2;
+  margin-bottom: 20px;
 }
-
 /*ウィジェット*/
 .widget {
   margin: 50px 0;
@@ -404,14 +442,9 @@ p {
 }
 
 .widgettitle {
-  color: var(--text-color);
   font-size: var(--f4);
-  font-weight: bold;
-  letter-spacing: 0.05em;
   font-style: normal;
   margin: 0px 0px 10px 0px;
-  padding: 0 0 3px 0;
-  border-bottom: 3px solid var(--secondary-color);
 }
 
 .mytheme-searchform .searchfield {
@@ -444,7 +477,7 @@ table#wp-calendar th {
   grid-row: foot;
   justify-self: center;
   align-self: center;
-  font-size: 16px;
+  font-size: 1em;
   color: #ffffff;
   background-color: var(--primary-color);
   grid-column: 1/-1;
@@ -458,7 +491,7 @@ table#wp-calendar th {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 20px;
   padding: 0 calc(var(--side) + var(--side2));
 }
 .footer-inner .footer-text .address p {
@@ -487,7 +520,7 @@ table#wp-calendar th {
 .footer-inner .footer-text .contact p {
   margin-bottom: 0px;
   align-self: center;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 1em;
 }
@@ -495,7 +528,7 @@ table#wp-calendar th {
   margin-bottom: 10px;
 }
 .footer-inner .footer-text .contact p:last-child {
-  font-size: 15px;
+  font-size: 16px;
 }
 .footer-inner .footer-text .contact p:last-child a {
   display: flex;
@@ -524,6 +557,15 @@ table#wp-calendar th {
 .xo-event-calendar table.xo-month span.month-event-title {
   font-size: 8px;
   white-space: pre-wrap;
+}
+.xo-event-calendar table.xo-month > thead th.saturday {
+  color: #a3daff;
+}
+.xo-event-calendar table.xo-month > thead th.sunday {
+  color: #f95454;
+}
+span.month-event-title {
+  background-color: #275931db !important;
 }
 
 .mytheme-footer .copylight {
@@ -592,14 +634,14 @@ table#wp-calendar th {
   /*border-radius: 10px;*/
   background-color: var(--primary-color);
   color: #ffffff;
-  font-size: var(--f6);
+  font-size: var(--f7);
 }
 /*記事：投稿日*/
 .mytheme-time {
   display: block;
   text-align: left;
   color: var(--secondary-color);
-  font-size: 12.8px;
+  font-size: var(--f7);
   margin-bottom: 30px;
 }
 /*記事：前後の記事へのリンク*/
@@ -616,7 +658,7 @@ table#wp-calendar th {
   padding: 40px 0;
   border-top: solid 1px #dddddd;
   border-bottom: solid 1px #dddddd;
-  font-size: var(--f6);
+  font-size: var(--f7);
 }
 
 .post-navigation .nav-previous {
@@ -665,7 +707,7 @@ table#wp-calendar th {
 }
 .category-nav-inner h2 {
   font-size: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 30px !important;
 }
 .category-nav-inner .category-nav-menu {
   width: 100%;
@@ -746,7 +788,7 @@ table#wp-calendar th {
   margin-bottom: 20px;
 }
 .postlist-excerpt p {
-  font-size: 11px;
+  font-size: 12px;
 }
 .postlist-readmore {
   width: 76px;
@@ -767,7 +809,7 @@ table#wp-calendar th {
   grid-column: 1 / -1;
   grid-row: auto;
   justify-self: center;
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .pagination .nav-links {
@@ -784,7 +826,7 @@ table#wp-calendar th {
 
 .my-prev-next {
   border: 1px solid var(--primary-color);
-  padding: 10px 20px;
+  padding: 5px 20px;
   letter-spacing: 2px;
 }
 
@@ -811,7 +853,7 @@ textarea#comment {
   font-size: 14px;
 }
 input#submit {
-  font-size: var(--f5);
+  font-size: var(--f7);
   padding: 8px 10px;
   font-family: "源ノ角ゴシック JP", "Source Han Sans", "Roboto", "Noto Sans JP";
 }
@@ -838,6 +880,19 @@ input#submit {
   border: none;
   background-color: #ffaa00;
   -webkit-appearance: none;
+}
+
+/*バースデーケーキ*/
+.page-header-title h1 {
+  padding: 0 !important;
+}
+.h2-reset h2 {
+  color: var(--secondary-color);
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
+  text-align: left;
 }
 
 .mytheme-article {
@@ -914,10 +969,39 @@ body.stk--anim-init
     p, .stk-block h1, .stk-block h2, .stk-block h3, .stk-block h4, .stk-block
     h5, .stk-block h6, .stk-block [class*="__text"]) {
   transition: all 500ms ease-in-out;
+  color: var(--secondary-color);
 }
 
 /* PC版 */
 @media (min-width: 768px) {
+  /*フォント*/
+  h1 {
+    font-size: var(--f1);
+  }
+  h2 {
+    font-size: var(--f2);
+    text-align: center;
+  }
+  h3 {
+    font-size: var(--f3);
+  }
+  h4 {
+    font-size: var(--f4);
+  }
+  h5 {
+    font-size: var(--f5);
+  }
+  h5:before,
+  h5.stk-block-heading__text:before {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    top: calc(50% - 2.5px);
+    left: 0;
+    background: var(--secondary-color);
+  }
+
   /*グリッド*/
   body {
     --header_row: 172px;
@@ -993,14 +1077,22 @@ body.stk--anim-init
     border-bottom: 1px solid var(--secondary-color);
     letter-spacing: 1px;
   }
+  .pagination {
+    margin-top: 100px;
+  }
+  /*コンテンツ*/
+  .mytheme-main {
+    margin-bottom: 150px;
+  }
   /*footer*/
   .mytheme-footer {
-    font-size: 16px;
+    font-size: 1em;
   }
   .footer-inner {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    margin-top: 40px;
   }
   .footer-inner .footer-text .contact {
     flex-direction: row;
@@ -1022,6 +1114,7 @@ body.stk--anim-init
   .footer-inner .calendar {
     width: 352px;
     margin-top: -95px;
+    letter-spacing: 0;
   }
 
   .footer-inner .calendar img {

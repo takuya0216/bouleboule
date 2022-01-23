@@ -6,21 +6,32 @@
 /*基本*/
 /*変数*/
 .block-editor-block-list__layout {
-  --f1: 2.44em;
-  --f2: 1.95em;
-  --f3: 1.56em;
-  --f4: 1.25em;
-  --f5: 1em;
-  --f6: 0.8em;
+  --f1: 2.75em;
+  --f2: 2.18em;
+  --f3: 1.87em;
+  --f4: 1.56em;
+  --f5: 1.25em;
+  --f6: 1em;
+  --f7: 0.8em;
+}
+
+/*フォント*/
+.editor-styles-wrapper .lp-catch h1 {
+  line-height: normal;
+  padding: 0;
+  margin: 10px 0;
+}
+.editor-styles-wrapper .lp-newsblog h2,
+.editor-styles-wrapper .lp-section-header h2 {
+  color: var(--secondary-color);
+  background-color: transparent;
+  line-height: normal;
+  padding: 0;
+  margin: 0;
 }
 
 .wp-block-post-template {
   margin: 0;
-}
-
-/*about*/
-.lp-about-header h2 span {
-  display: block;
 }
 
 /*コンセプト*/
