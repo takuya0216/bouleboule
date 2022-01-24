@@ -6,7 +6,9 @@
     $reuse_block_content = apply_filters( 'the_content', $reuse_block->post_content);
     echo $reuse_block_content;
   ?>
-  <nav id="category-nav">
+  <!-- カテゴリーアーカイブの場合 -->
+  <?php /* If this is a category archive */ if (is_category()) { ?>
+    <nav id="category-nav">
       <div class="category-nav-inner wp-inner h2-reset">
         <h2>CATEGORY</h2>
         <ul class="category-nav-menu">
@@ -29,7 +31,33 @@
         </ul>
       </div>
     </nav>
- <div class="postlist">
+  <!-- タグアーカイブの場合 -->
+  <?php /* If this is a tag archive */ } elseif( is_tag() ) { ?>
+  <h3 class="postlist-title"><?php single_tag_title(); ?><span>-tags-</span></h3>
+
+  <!-- 日別アーカイブの場合 -->
+  <?php /* If this is a daily archive */ } elseif (is_day()) { ?>
+  <h3 class="postlist-title"><?php echo get_the_time('Y年n月j日'); ?><span>-date-</span></h3>
+
+  <!-- 月別アーカイブの場合 -->
+  <?php /* If this is a monthly archive */ } elseif (is_month()) { ?>
+  <h3 class="postlist-title"><?php echo get_the_time('Y年n月'); ?><span>-month-</span></h3>
+
+  <!-- 年別アーカイブの場合 -->
+  <?php /* If this is a yearly archive */ } elseif (is_year()) { ?>
+  <h3 class="postlist-title"><?php echo get_the_time('Y年'); ?><span>-year-</span></h3>
+
+  <!-- 検索の場合 -->
+  <?php /* If this is a yearly archive */ } elseif (is_search()) { ?>
+  <h3 class="postlist-title"><?php the_search_query(); ?><span>-search-</span></h3>
+
+  <!-- 著者アーカイブの場合 -->
+  <?php /* If this is an author archive */ } elseif (is_author()) { ?>
+  <h3 class="postlist-title"><span>-author-</span></h3>
+
+  <?php } ?>
+
+  <div class="postlist">
   <?php if(have_posts()): while(have_posts()): the_post(); ?>
   <?php $url = get_permalink(); ?>
     <article <?php post_class(); ?>>
@@ -57,7 +85,11 @@
       <a href="<?php echo urldecode($url); ?>"><p>READ MORE</p></a>
     </div>
     </article>
-  <?php endwhile; endif; ?>
+  <?php endwhile;?>
+  <!-- 投稿がない場合 -->
+  <?php else: ?>
+    <p class="no-postlist">記事が見つかりませんでした。</p>
+  <?php endif; ?>
   </div>
   <?php the_posts_pagination(array(
     'mid_size' => 1, //カレントページの前後

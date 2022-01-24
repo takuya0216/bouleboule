@@ -363,6 +363,15 @@ function save_default_thumbnail( $post_id ) {
     }
   }
 }
+/*投稿者アーカイブ非表示*/
+function author_archive_404( $query ) {
+    if ( ! is_admin() && is_author() ) {
+        $query->set_404();
+        status_header( 404 );
+        nocache_headers();
+    }
+}
+add_filter( 'parse_query', 'author_archive_404' );
 
 /* テーマカスタマイザー
 ---------------------------------------------------------- */
