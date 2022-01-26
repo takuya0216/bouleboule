@@ -37,27 +37,18 @@ function mytheme_setup(){
   //カスタム単位
   add_theme_support('custom-units');
 
-  //カラーパレット設定
-  // デフォルトカラーパレット取得（子テーマの場合）親テーマの場合はfalse
-  $oldColorPalette = current( (array) get_theme_support( 'editor-color-palette' ) );
-  // Wordpressのデフォルトカラーパレット取得 wp-includes/theme.json
-  if (false === $oldColorPalette && class_exists('WP_Theme_JSON_Resolver')) {
-      $settings = WP_Theme_JSON_Resolver::get_core_data()->get_settings();
-      if (isset($settings['color']['palette']['core'])) {
-          $oldColorPalette = $settings['color']['palette']['core']; // WPの言語設定で翻訳された名前が入る。
-      }
-  }
+
   // カラー追加
   $newColorPalette = [
       [
-          'name' => esc_attr__('グリーン（メイン）', 'myThemeLangDomain'),
+          'name' => esc_attr__('グリーン（テキスト）', 'myThemeLangDomain'),
           'slug' => 'primary',
-          'color' => '#315933',
+          'color' => '#275931',
       ],
       [
-          'name' => esc_attr__('グリーン（サブ）', 'myThemeLangDomain'),
+          'name' => esc_attr__('グリーン（背景）', 'myThemeLangDomain'),
           'slug' => 'secondary',
-          'color' => '#275931',
+          'color' => '#315933',
       ],
       [
           'name' => esc_attr__('グレー（背景）', 'myThemeLangDomain'),
@@ -69,13 +60,59 @@ function mytheme_setup(){
           'slug' => 'accent',
           'color' => '#f6e17a',
       ],
+      [
+          'name' => esc_attr__('白', 'myThemeLangDomain'),
+          'slug' => 'white',
+          'color' => '#fff',
+      ],
+      [
+          'name' => esc_attr__('黒', 'myThemeLangDomain'),
+          'slug' => 'black',
+          'color' => '#000',
+      ],
+      [
+          'name' => esc_attr__('赤', 'myThemeLangDomain'),
+          'slug' => 'mytheme-red',
+          'color' => '#E44141',
+      ],
+      [
+          'name' => esc_attr__('青', 'myThemeLangDomain'),
+          'slug' => 'mytheme-blue',
+          'color' => '#3D79D5',
+      ],
+      [
+          'name' => esc_attr__('緑', 'myThemeLangDomain'),
+          'slug' => 'mytheme-green',
+          'color' => '#63A84D',
+      ],
+      [
+          'name' => esc_attr__('オレンジ', 'myThemeLangDomain'),
+          'slug' => 'mytheme-orange',
+          'color' => '#F09F4D',
+      ],
+      [
+          'name' => esc_attr__('薄赤1', 'myThemeLangDomain'),
+          'slug' => 'mytheme-thin-red',
+          'color' => '#FFF2F0',
+      ],
+      [
+          'name' => esc_attr__('薄青1', 'myThemeLangDomain'),
+          'slug' => 'mytheme-thin-blue',
+          'color' => '#F3F8FD',
+      ],
+      [
+          'name' => esc_attr__('薄緑1', 'myThemeLangDomain'),
+          'slug' => 'mytheme-thin-green',
+          'color' => '#F1F9EE',
+      ],
+      [
+          'name' => esc_attr__('薄オレンジ1', 'myThemeLangDomain'),
+          'slug' => 'mytheme-thin-orange',
+          'color' => '#FDF9EE',
+      ],
   ];
-  // カラーパレット配列作成
-  if (!empty($oldColorPalette)) {
-      $newColorPalette = array_merge($oldColorPalette, $newColorPalette);
-  }
-  // カラーパレット設定適用
-  add_theme_support( 'editor-color-palette', $newColorPalette);
+  // カラーパレット
+	add_theme_support( 'editor-color-palette', $newColorPalette );
 
   /*エディタに色設定任意設定。(使用色を限定したい時に使う。基本は使わない)
    .has-slug-background-color=背景色

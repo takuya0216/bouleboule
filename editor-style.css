@@ -19,13 +19,24 @@
   --secondary-color: #275931;
   --tertiary-color: #e0e1e1;
   --accent-color: #f6e17a;
+  --white-color: #fff;
+  --black-color: #000;
+  --mytheme-red-color: #e44141;
+  --mytheme-blue-color: #3d79d5;
+  --mytheme-green-color: #63a84d;
+  --mytheme-orange-color: #f09f4d;
+  --mytheme-thin-red-color: #fff2f0;
+  --mytheme-thin-blue-color: #f3f8fd;
+  --mytheme-thin-green-color: #f1f9ee;
+  --mytheme-thin-orange-color: #fdf9ee;
 }
+
 /* 基本 */
 
 body {
   font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", "Noto Sans JP",
     sans-serif;
-  color: var(--secondary-color);
+
   font-feature-settings: "palt";
 }
 /*フォント*/
@@ -34,6 +45,7 @@ h1 {
   line-height: 1.3em;
   padding: 5px 0;
   margin: 10px 0;
+  color: var(--secondary-color);
 }
 h2 {
   font-size: var(--f3);

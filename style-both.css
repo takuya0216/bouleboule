@@ -119,6 +119,10 @@ pre {
   clear: both;
 }
 
+/*リンクテキストホワイト*/
+.link-force-white a {
+  color: #ffffff;
+}
 /*PCでインライン強制改行*/
 .span-br-pc {
   display: inline;
