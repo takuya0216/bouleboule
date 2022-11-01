@@ -194,7 +194,7 @@ li {
   padding: 0;
 }
 
-.dev{
+.dev {
   display: none;
 }
 
@@ -207,8 +207,15 @@ body.stk--anim-init :is(.stk-block, .stk-container, .stk-container-padding, .stk
   transition: all 500ms ease-in-out;
   color: var(--secondary-color);
 }
+
 .stk-block {
   z-index: auto !important;
+}
+
+@media screen and (max-width: 767px) {
+  .stk-f883401 {
+    top: 20vw !important;
+  }
 }
 
 /*WPブロック*/

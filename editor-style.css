@@ -3,6 +3,7 @@
  */
 
 @charset "UTF-8";
+
 /*変数*/
 :root {
   /*フォントサイズ*/
@@ -31,14 +32,14 @@
   --mytheme-thin-orange-color: #fdf9ee;
 }
 
+
 /* 基本 */
 
 body {
-  font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", "Noto Sans JP",
-    sans-serif;
-
+  font-family: "小塚ゴシック Pro", "Kozuka Gothic Pro", "Noto Sans JP", sans-serif;
   font-feature-settings: "palt";
 }
+
 /*フォント*/
 h1 {
   font-size: var(--f2);
@@ -47,6 +48,7 @@ h1 {
   margin: 10px 0;
   color: var(--secondary-color);
 }
+
 h2 {
   font-size: var(--f3);
   color: #ffffff;
@@ -58,15 +60,18 @@ h2 {
   padding-bottom: 10px;
   padding-left: 20px;
 }
+
 h3 {
   font-size: var(--f4);
   line-height: 1.3em;
-  border-bottom: 3px solid var(--secondary-color);
+  border-bottom: 3px solid var(--secondary-color) !important;
   padding-left: 0;
   padding-top: 5px;
   padding-bottom: 3px;
   margin: 10px 0;
+  color: var(--secondary-color);
 }
+
 h4 {
   font-size: var(--f5);
   line-height: 1.3em;
@@ -74,15 +79,19 @@ h4 {
   padding-top: 10px;
   padding-bottom: 10px;
   margin: 20px 0;
-  border-left: 6px solid;
+  border-left: 6px solid var(--secondary-color) !important;
+  color: var(--secondary-color);
 }
+
 h5 {
   position: relative;
   font-size: var(--f6);
   line-height: 1.3em;
   padding: 5px 20px;
   margin: 20px 0;
+  color: var(--secondary-color);
 }
+
 h5:before {
   content: "";
   position: absolute;
@@ -92,10 +101,12 @@ h5:before {
   left: 0;
   background: var(--secondary-color);
 }
+
 h6 {
   font-size: var(--f6);
   line-height: 1.3em;
   margin: 20px 0;
+  color: var(--secondary-color);
 }
 
 p {
@@ -111,6 +122,7 @@ p {
 .page-header-title h1 {
   padding: 0 !important;
 }
+
 .h2-reset h2 {
   color: var(--secondary-color);
   background-color: transparent;
@@ -123,33 +135,45 @@ p {
 .wp-block {
   max-width: 824px;
 }
+
 /*幅広*/
 .wp-block[data-align="wide"] {
   max-width: 1030px;
 }
+
 /*全幅*/
 .wp-block[data-align="full"] {
   max-width: none;
 }
 
 /*stackable*/
-:where(:not(.stk-block-icon-label):not(.stk-block-blockquote):not(.stk-block-columns):not(.stk-block-expand):not(.stk-block-button-group)
-    > .stk-inner-blocks
-    > .block-editor-inner-blocks
-    > .block-editor-block-list__layout
-    > [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"]))
-  ~ [data-block][data-type^="stackable/"]:not([data-type="stackable/column"], [data-type^="stackable/image"]) {
-  margin-top: 0px;
-}
-.is-root-container
-  > [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"])
-  ~ [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"]) {
+:where(:not(.stk-block-icon-label):not(.stk-block-blockquote):not(.stk-block-columns):not(.stk-block-expand):not(.stk-block-button-group) > .stk-inner-blocks > .block-editor-inner-blocks > .block-editor-block-list__layout > [data-block][data-type^="stackable/"]:not([data-type^="stackable/image"]))~[data-block][data-type^="stackable/"]:not([data-type="stackable/column"], [data-type^="stackable/image"]) {
   margin-top: 0px;
 }
 
-.wp-block[data-align="right"] > * {
+.is-root-container>[data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"])~[data-block][data-type^="stackable/"]:not([data-type^="stackable/image"], [data-align="full"]) {
+  margin-top: 0px;
+}
+
+.editor-styles-wrapper .stk--has-background-overlay:before,
+.editor-styles-wrapper .stk-block .stk-button:after,
+.editor-styles-wrapper .stk-block .stk-button:before,
+.editor-styles-wrapper .stk-block li::marker,
+.editor-styles-wrapper :is([data-type^="stackable/"], .stk-block, .stk-container, .stk-container-padding, .stk-img-wrapper, .stk-img-wrapper img, .stk-block-heading__top-line, .stk-block-heading__bottom-line, .stk-block-posts__item-hide, .stk-block-posts__title > a, .stk-button, .stk-button__inner-text, .stk-block li, .stk-block p, .stk-block h1, .stk-block h2, .stk-block h3, .stk-block h4, .stk-block h5, .stk-block h6) {
+  transition: all 500ms ease-in-out;
+  color: var(--secondary-color);
+}
+
+.stk-0335231,
+.stk-f883401 {
+  right: -185px !important;
+
+}
+
+.wp-block[data-align="right"]>* {
   margin: 0;
 }
+
 /*ウィジェットカテゴリブロックのエディタで中央配置*/
 [data-align="center"] .wp-block-categories,
 [data-align="center"] .wp-block-latest-posts,
@@ -161,29 +185,37 @@ p {
   margin-left: auto;
   margin-right: auto;
 }
+
 /*ボーダーなし*/
 .border-style-none * {
   border-style: none !important;
 }
+
 /* PC版 */
 @media (min-width: 768px) {
+
   /*フォント*/
   h1 {
     font-size: var(--f1);
   }
+
   h2 {
     font-size: var(--f2);
     text-align: center;
   }
+
   h3 {
     font-size: var(--f3);
   }
+
   h4 {
     font-size: var(--f4);
   }
+
   h5 {
     font-size: var(--f5);
   }
+
   h5:before {
     content: "";
     position: absolute;
