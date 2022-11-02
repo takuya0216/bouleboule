@@ -924,7 +924,7 @@ li.category-nav-item a {
 }
 
 .postlist {
-  --colgap: 15px;
+  --colgap: 2vw;
   --imgh: 56vw;
   display: grid;
   grid-column: 3 / -3;
@@ -1025,6 +1025,7 @@ h3.postlist-title span {
   grid-row: auto;
   justify-self: center;
   margin-top: 50px;
+  margin-bottom: 10px;
 }
 
 .pagination .nav-links {
@@ -1120,6 +1121,7 @@ input#submit {
   display: grid;
   grid-template-columns: inherit;
   grid-template-columns: subgrid;
+  overflow: hidden;
 }
 
 .mytheme-article>* {
@@ -1378,5 +1380,11 @@ input#submit {
     --side2: calc((100vw - var(--content_col)) / 4);
     grid-template-columns:
       var(--side2) var(--side) var(--content_col) var(--side) var(--side2);
+  }
+}
+
+@media (max-width: 359px) {
+  .postlist {
+    grid-template-columns: 1fr;
   }
 }
