@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<main class="mytheme-main mytheme-article">
+<main class="mytheme-main mytheme-article mytheme-post">
   <?php
     // 再利用ブロックを取得
     $reuse_block = get_post( 1128 ); //投稿ヘッダー
